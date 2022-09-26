@@ -1,6 +1,75 @@
-# Sprint 05 Project
-> Vehicle classification from images
-## 1. Install
+# Vehicle Image Classification
+
+ The goal of this project is to train a model with vehicle images, which later on will be able to classify a given input (as image) as the respective vehicle. This was a large project with specific focus on the training of the model. 
+ 
+ Why? 
+ 
+ Well, because of the complexity of the Dataset, around 15k Vehicle Images. As you can imagine, to deal with such a huge Dataset effectively the need of a Cloud Service is indispensable.
+
+ ## Motivation
+
+ This project is so enriching, from whatever perspective you analyze it. It makes yourself getting familiar with a Cloud Servie, in my particular case AWS Services. Which were provided by my tutors on Anyone AI Bootcamp. Then, handling a Dataset with images. I have to learn new libraries to automate the splitting of the Dataset, to make an insightuful EDA and so much more.
+
+ Then, in consideration with the Model Training. The goal was to Fine-Tuned an already trained model (Resnet 50), to gain more knowledge on Vehicles in specific, plus all the stablished weights learned from more than 1 million Images when google trained it and release it to the community. In addition to this, working with Neural Networks, more specifically CNN. And being able to put all the theoretical teachings into practice.
+
+ I am going to end this section, even though there are still a lot more things to mention.
+ I hope you enjoy and learn from this project as much as I have!
+
+
+ ## Table of Contents
+
+ **[1. Vehicle Classification](#heading--1)**
+
+  * [1.1. Download](#heading--1-1)
+  * [1.2. Scripts](#heading--1-2)
+    * [1.2.1. Prepare_train_test_dataset](#heading--2-1-1)
+    * [1.2.2. Remove_background](#heading--2-1-1)
+    * [1.2.3. Train](#heading--2-1-1)
+  * [1.3. Notebooks](#heading--1-2)
+    * [1.3.1. EDA](#heading--2-1-1)
+    * [1.3.2. Report](#heading--2-1-1)
+  *  [1.4. Models](#heading--1-2)
+     * [1.4.1. Resnet_50](#heading--2-1-1)
+  *  [1.5. Utils](#heading--1-2)
+     * [1.5.1. Data_aug](#heading--2-1-1)
+     * [1.5.2. Detection](#heading--2-1-1)
+     * [1.5.2. Utils](#heading--2-1-1)
+  *  [1.6. Tests](#heading--1-2)
+     * [1.6.1. Test_data_aug](#heading--2-1-1)
+     * [1.6.2. Test_detection](#heading--2-1-1)
+     * [1.6.3. Test_resnet_50](#heading--2-1-1)
+     * [1.6.4. Test_utils](#heading--2-1-1)
+* [1.7. Docker](#heading--2-1-1)
+     * [1.7.1. Dockerfile](#heading--2-1-1)
+     * [1.7.1. Dockerfile_aws](#heading--2-1-1)
+* [1.8. Experiments](#heading--2-1-1)
+     * [1.8.1. Config_exp](#heading--2-1-1)
+
+`1.1. download.py` : This file was coded to download the Dataset with the Vehicle Images and the CSV file with its corresponding labels from the s3 Bucket from AWS.
+
+`1.2. Scripts/` : This folder contains various important scripts use on different parts of the project. Each one of them has a clear description of its role and functionallity.
+
+`1.3. Notebooks/` : This folder contains two Jupyter Notebooks, the EDA and the Report which basically is the evaluation notebook of the final selected model.
+
+`1.4. Models/` : This folder contains a single script, which is in charge of the model creation. Here the CNN is coded with its respective hyperparameters.
+
+`1.5. Utils/` : This folder contains various scripts which are use on different parts of the project. Same idea as the previously mentioned folder, Scripts. 
+
+More particullary, the `utils/data_aug.py` script is called by the `models/resnet_50.py` at the time of creating the augmentation layers of the CNN.
+
+Then, the `utils/utils.py` has several functions called at different stages of the project, while `utils/detection.py` is used when removing the noise from the images background.
+
+`1.6. Tests/` : As the name indicates, there is not a lot of mistery with this file. It contains tests for 
+different parts of the project.
+
+`1.7. Docker/` : Also, little to say about this. It contains two Dockerfiles, one use for my local enviroment and the other one when I worked on the AWS Cloud
+
+`1.8. Experiments/` : This folder contains an example of a YAML file, which is the input of the `scripts/train.main(config_file)` function, in charge of the training of the CNN. Every time you want to train a new model, you will have to create a new sub-folder inside `experiments/`. 
+
+## Technologies and Teachings
+
+I really encourage you to see the Flowchart to gain a deep comprehensation of the workflow of the project.
+## Installation
 
 You can use `Docker` to easily install all the needed packages and libraries. Two Dockerfiles are provided for both CPU and GPU support.
 
@@ -31,79 +100,3 @@ $ docker run --rm --net host --gpus all -it \
 ```bash
 $ pytest tests/
 ```
-
-## 2. Prepare your data
-
-As a first step, we must extract the images from the file `car_ims.tgz` and put them inside the `data/` folder. Also place the annotations file (`car_dataset_labels.csv`) in the same folder. It should look like this:
-
-```
-data/
-    ├── car_dataset_labels.csv
-    ├── car_ims
-    │   ├── 000001.jpg
-    │   ├── 000002.jpg
-    │   ├── ...
-```
-
-Then, you should be able to run the script `scripts/prepare_train_test_dataset.py`. It will format your data in a way Keras can use for training our CNN model.
-
-You will have to complete the missing code in this script to make it work.
-
-## 3. Train your first CNN (Resnet50)
-
-After we have our images in place, it's time to create our first CNN and train it on our dataset. To do so, we will make use of `scripts/train.py`.
-
-The only input argument it receives is a YAML file with all the experiment settings like dataset, model output folder, epochs,
-learning rate, data augmentation, etc.
-
-Each time you are going to train a new a model, we recommend you to create a new folder inside the `experiments/` folder with the experiment name. Inside this new folder, create a `config.yml` with the experiment settings. We also encourage you to store the model weights and training logs inside the same experiment folder to avoid mixing things between different runs. The folder structure should look like this:
-
-```bash
-experiments/
-    ├── exp_001
-    │   ├── config.yml
-    │   ├── logs
-    │   ├── model.01-6.1625.h5
-    │   ├── model.02-4.0577.h5
-    │   ├── model.03-2.2476.h5
-    │   ├── model.05-2.1945.h5
-    │   └── model.06-2.0449.h5
-    ├── exp_002
-    │   ├── config.yml
-    │   ├── logs
-    │   ├── model.01-7.4214.h5
-    ...
-```
-
-You can check the file `experiments/config_example.yml` to get an idea on all the configurations you can set for an experiment.
-
-The script `scripts/train.py` is already coded but it makes use of external functions from other project modules that you must code to make it work. Particularly, you will have to complete:
-
-- `utils.load_config()`: Takes as input the path to an experiment YAML configuration file, loads it and returns a dict.
-- `resnet50.create_model()`: Returns a CNN ready for training or for evaluation, depending on the input parameters received. Part of coding this functions will require you to create the layers of your first CNN with Keras.
-- `data_aug.create_data_aug_layer()`: Used by `resnet50.create_model()`. This function adds data augmentation layers to our model that will be used only while training.
-
-## 4. Evaluate your trained model
-
-After running many experiments and having a potentially good model trained. It's time to check its performance on our test dataset and prepare a nice report with some evaluation metrics.
-
-We will use the notebook `notebooks/Model Evaluation.ipynb` to do it. As you may see, you will have to complete some missing pieces in the notebook to make it run.
-
-Particularly, you will have to complete `utils.predict_from_folder()` function (used in the notebook), which contains the main logic to get predictions from our trained model.
-
-## 5. Improve classification by removing noisy background
-
-As we already saw in the `notebooks/EDA.ipynb` file. Most of the images have a of background which may affect our model learning during the training process.
-
-It's a good idea to remove this background. One thing we can do is to use a Vehicle detector to isolate the car from the rest of the content in the picture.
-
-We will use [Detectron2](https://github.com/facebookresearch/detectron2) framework for this. It offers a lot of different models, you can check in its [Model ZOO](https://github.com/facebookresearch/detectron2/blob/main/MODEL_ZOO.md#faster-r-cnn). We will use for this assignment the model called "R101-FPN".
-
-In particular, we will use a detector model trained on [COCO](https://cocodataset.org) dataset which has a good balance between accuracy and speed. This model can detect up to 80 different types of objects but here we're only interested on getting two out of those 80, those are the classes "car" and "truck".
-
-For this assignment, you will have to complete with the corresponding code the following two files:
-
-- `scripts/remove_background.py`: It will process the initial dataset used for training your model on **item (3)**, removing the background from pictures and storing the resulting images on a new folder.
-- `utils/detection.py`: This module loads our detector and implements the logic to get the vehicle coordinate from the image.
-
-Now you have the new dataset in place, it's time to start training a new model and checking the results in the same way as we did for steps items **(3)** and **(4)**.
