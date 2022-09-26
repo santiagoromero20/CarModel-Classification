@@ -14,12 +14,7 @@
 
  Some examples of Frameworks and Libraries used **os**, **argparse** , **cv2**, **Detectron2**, **COCO**, **Tensorflow** and **Keras**.
 
- I am going to end this section, even though there are still a lot more things to mention.
-
-
  I hope you enjoy and learn from this project as much as I have!
-
-
  ## **Table of Contents**
 
  **[1. Vehicle Classification](#heading--1)**
@@ -70,6 +65,7 @@ different parts of the project.
 
 `1.8. Experiments/` : This folder contains an example of a YAML file, which is the input of the `scripts/train.main(config_file)` function, in charge of the training of the CNN. Every time you want to train a new model, you will have to create a new sub-folder inside `experiments/`.
 
+**I really recommend reading the `VehicleClassWorkflow.docx` to gain a deeper and clearer understanding**
 ## **Installation**
 
 You can use `Docker` to easily install all the needed packages and libraries. Two Dockerfiles are provided for both CPU and GPU support.
