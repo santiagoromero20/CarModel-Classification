@@ -6,17 +6,21 @@
  
  Well, because of the complexity of the Dataset, around 15k Vehicle Images. As you can imagine, to deal with such a huge Dataset effectively the need of a Cloud Service is indispensable.
 
- ## Motivation
+ ## **Motivation, Technologies and Teachings**
 
- This project is so enriching, from whatever perspective you analyze it. It makes yourself getting familiar with a Cloud Servie, in my particular case AWS Services. Which were provided by my tutors on Anyone AI Bootcamp. Then, handling a Dataset with images. I have to learn new libraries to automate the splitting of the Dataset, to make an insightuful EDA and so much more.
+ This project is so enriching, from whatever perspective you analyze it. It makes yourself getting familiar with a Cloud Servie, in my particular case **AWS Services**. Which were provided by my tutors on Anyone AI Bootcamp. Then, handling a Dataset with images. I have to learn new libraries to automate the splitting of the Dataset, to make an insightuful EDA and at the end to remove the background of the images. 
+ 
+ Then, in consideration with the Model Training. The goal was to Fine-Tuned an already trained model (Resnet 50), to gain more knowledge on Vehicles in specific, plus all the stablished weights learned from more than 1 million Images when google trained it and release it to the community. In addition to this, working with Neural Networks, more specifically CNN. And being able to put all my theoretical knowledge into practice.
 
- Then, in consideration with the Model Training. The goal was to Fine-Tuned an already trained model (Resnet 50), to gain more knowledge on Vehicles in specific, plus all the stablished weights learned from more than 1 million Images when google trained it and release it to the community. In addition to this, working with Neural Networks, more specifically CNN. And being able to put all the theoretical teachings into practice.
+ Some examples of Frameworks and Libraries used **os**, **argparse** , **cv2**, **Detectron2**, **COCO**, **Tensorflow** and **Keras**.
 
  I am going to end this section, even though there are still a lot more things to mention.
+
+
  I hope you enjoy and learn from this project as much as I have!
 
 
- ## Table of Contents
+ ## **Table of Contents**
 
  **[1. Vehicle Classification](#heading--1)**
 
@@ -27,7 +31,7 @@
     * [1.2.3. Train](#heading--2-1-1)
   * [1.3. Notebooks](#heading--1-2)
     * [1.3.1. EDA](#heading--2-1-1)
-    * [1.3.2. Report](#heading--2-1-1)
+    * [1.3.2. Evaluation](#heading--2-1-1)
   *  [1.4. Models](#heading--1-2)
      * [1.4.1. Resnet_50](#heading--2-1-1)
   *  [1.5. Utils](#heading--1-2)
@@ -49,7 +53,7 @@
 
 `1.2. Scripts/` : This folder contains various important scripts use on different parts of the project. Each one of them has a clear description of its role and functionallity.
 
-`1.3. Notebooks/` : This folder contains two Jupyter Notebooks, the EDA and the Report which basically is the evaluation notebook of the final selected model.
+`1.3. Notebooks/` : This folder contains two Jupyter Notebooks, the EDA and the Evaluation which basically is the evaluation notebook of the final selected model.
 
 `1.4. Models/` : This folder contains a single script, which is in charge of the model creation. Here the CNN is coded with its respective hyperparameters.
 
@@ -64,12 +68,9 @@ different parts of the project.
 
 `1.7. Docker/` : Also, little to say about this. It contains two Dockerfiles, one use for my local enviroment and the other one when I worked on the AWS Cloud
 
-`1.8. Experiments/` : This folder contains an example of a YAML file, which is the input of the `scripts/train.main(config_file)` function, in charge of the training of the CNN. Every time you want to train a new model, you will have to create a new sub-folder inside `experiments/`. 
+`1.8. Experiments/` : This folder contains an example of a YAML file, which is the input of the `scripts/train.main(config_file)` function, in charge of the training of the CNN. Every time you want to train a new model, you will have to create a new sub-folder inside `experiments/`.
 
-## Technologies and Teachings
-
-I really encourage you to see the Flowchart to gain a deep comprehensation of the workflow of the project.
-## Installation
+## **Installation**
 
 You can use `Docker` to easily install all the needed packages and libraries. Two Dockerfiles are provided for both CPU and GPU support.
 
