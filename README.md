@@ -6,6 +6,7 @@
  
  Well, because of the complexity of the Dataset, around 15k Vehicle Images. As you can imagine, to deal with such a huge Dataset effectively the need of a Cloud Service is indispensable.
 
+![Alt ](img/white_bear.jpeg "Title")
  ## **Motivation, Technologies and Teachings**
 
  This project is so enriching, from whatever perspective you analyze it. It makes yourself getting familiar with a Cloud Servie, in my particular case **AWS Services**. Which were provided by my tutors on Anyone AI Bootcamp. Then, handling a Dataset with images. I have to learn new libraries to automate the splitting of the Dataset, to make an insightuful EDA and at the end to remove the background of the images. 
